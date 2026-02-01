@@ -34,31 +34,32 @@
 
     .buttons {
       position: relative;
-      height: 120px;
+      height: 140px;
     }
 
     button {
-      padding: 12px 24px;
-      font-size: 1rem;
+      padding: 12px 20px;
+      font-size: 0.95rem;
       border: none;
       border-radius: 30px;
       cursor: pointer;
       transition: 0.2s;
       position: absolute;
+      white-space: nowrap;
     }
 
     #yes {
       background: #ff4d6d;
       color: white;
       left: 30px;
-      top: 40px;
+      top: 60px;
     }
 
     #no {
       background: #ccc;
       color: #333;
       right: 30px;
-      top: 40px;
+      top: 60px;
     }
 
     .result {
@@ -72,7 +73,7 @@
 
 <body>
   <div class="card">
-    <h1>Will you be my Valentine? 💌</h1>
+    <h1>Hi baby..Will you be my Valentine? 💌</h1>
 
     <div class="buttons">
       <button id="yes">Yes ❤️</button>
@@ -88,6 +89,24 @@
     const noBtn = document.getElementById("no");
     const yesBtn = document.getElementById("yes");
     const result = document.getElementById("result");
+
+    const noTexts = [
+      "are you sure?",
+      "Are you really really sure?",
+      "Think again!",
+      "Click on yes!",
+      "You don't have a choice😂",
+      "Saayyy Yess!!!"
+    ];
+
+    let noClickCount = 0;
+
+    noBtn.addEventListener("click", () => {
+      if (noClickCount < noTexts.length) {
+        noBtn.innerText = noTexts[noClickCount];
+        noClickCount++;
+      }
+    });
 
     noBtn.addEventListener("mouseover", () => {
       const x = Math.random() * 200 - 100;
