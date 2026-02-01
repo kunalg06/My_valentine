@@ -34,7 +34,7 @@
 
     .buttons {
       position: relative;
-      height: 140px;
+      height: 160px;
     }
 
     button {
@@ -43,7 +43,7 @@
       border: none;
       border-radius: 30px;
       cursor: pointer;
-      transition: 0.2s;
+      transition: 0.25s;
       position: absolute;
       white-space: nowrap;
     }
@@ -52,14 +52,14 @@
       background: #ff4d6d;
       color: white;
       left: 30px;
-      top: 60px;
+      top: 70px;
     }
 
     #no {
       background: #ccc;
       color: #333;
       right: 30px;
-      top: 60px;
+      top: 70px;
     }
 
     .result {
@@ -73,16 +73,15 @@
 
 <body>
   <div class="card">
-    <h1>Hi baby..Will you be my Valentine? 💌</h1>
+    <h1>Hi Baby.. Will you be my Valentine? 💌</h1>
 
-    <div class="buttons">
+    <div class="buttons" id="buttonArea">
       <button id="yes">Yes ❤️</button>
       <button id="no">No 😅</button>
     </div>
 
     <div class="result" id="result">
-      I knew you’d say YES 💖🥰
-      I Love you shoo much 🧿♥️
+      I knew you’d say YES, I love you shoo much 💖🥰
     </div>
   </div>
 
@@ -90,9 +89,10 @@
     const noBtn = document.getElementById("no");
     const yesBtn = document.getElementById("yes");
     const result = document.getElementById("result");
+    const area = document.getElementById("buttonArea");
 
     const noTexts = [
-      "are you sure?",
+      "Are you sure?",
       "Are you really really sure?",
       "Think again!",
       "Click on yes!",
@@ -102,17 +102,27 @@
 
     let noClickCount = 0;
 
+    function moveNoButton() {
+      const areaWidth = area.clientWidth - noBtn.offsetWidth;
+      const areaHeight = area.clientHeight - noBtn.offsetHeight;
+
+      const x = Math.random() * areaWidth;
+      const y = Math.random() * areaHeight;
+
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    }
+
     noBtn.addEventListener("click", () => {
       if (noClickCount < noTexts.length) {
         noBtn.innerText = noTexts[noClickCount];
         noClickCount++;
       }
+      moveNoButton();
     });
 
     noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * 200 - 100;
-      const y = Math.random() * 200 - 100;
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+      moveNoButton();
     });
 
     yesBtn.addEventListener("click", () => {
